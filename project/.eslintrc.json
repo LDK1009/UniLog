@@ -1,0 +1,11 @@
+{
+  "extends": "next/core-web-vitals",
+  "env": {
+    "browser": true,
+    "node": true  // Node.js 환경 활성화
+  },
+  "rules": {
+    "react/prop-types": "off",  // PropTypes 사용하지 않을 경우 비활성화
+    "no-unused-vars": "warn"    // 미사용 변수에 대해 경고만 표시
+  }
+}

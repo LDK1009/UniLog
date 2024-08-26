@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import InputId from "./InputUid";
 import InputPassword from "./InputPassword";
 import InputNickname from "./InputNickname";
 import style from "@/styles/components/SignUpForm.module.scss";
+import axios from "axios";
 
 const SignUpForm = () => {
   // 여러 개의 인풋 필드를 상태로 관리
@@ -23,18 +24,27 @@ const SignUpForm = () => {
     }));
   };
 
-  useEffect(() => {
-    console.log(formData);
-  }, [formData]);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/signup`, formData);
+      console.log(res);
+    } catch (error) {
+      console.error('Error posting data:', error);
+    }
+  };
 
   return (
     <>
       <h1>SignUp Form</h1>
+      <form onSubmit={handleSubmit}>
       <div className={style["container"]}>
         <InputNickname className={style["input-nickname"]} value={formData.nickname} handleChange={handleChange} />
         <InputId className={style["input-uid"]} value={formData.uid} handleChange={handleChange} />
         <InputPassword className={style["input-password"]} value={formData.password} handleChange={handleChange} />
       </div>
+      <button type="submit">Submit</button>
+      </form>
     </>
   );
 };
