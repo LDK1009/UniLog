@@ -27,7 +27,7 @@ const SignUpForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/signup`, formData);
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/sign-up`, formData);
       console.log(res);
     } catch (error) {
       console.error('Error posting data:', error);
